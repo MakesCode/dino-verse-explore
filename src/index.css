@@ -8,35 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Paléontologie color palette */
+    --background: 45 15% 97%;
+    --foreground: 30 25% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 42 20% 95%;
+    --card-foreground: 30 25% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 42 20% 95%;
+    --popover-foreground: 30 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Terre et fossile - brown dominant */
+    --primary: 25 45% 25%;
+    --primary-foreground: 45 15% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Forêt préhistorique - green */
+    --secondary: 95 35% 35%;
+    --secondary-foreground: 45 15% 97%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 40 12% 88%;
+    --muted-foreground: 30 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent doré fossile */
+    --accent: 45 85% 65%;
+    --accent-foreground: 30 25% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 45 15% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 40 15% 85%;
+    --input: 40 15% 90%;
+    --ring: 25 45% 25%;
 
-    --radius: 0.5rem;
+    /* Gradients préhistoriques */
+    --gradient-hero: linear-gradient(135deg, hsl(25 45% 25%), hsl(35 55% 35%));
+    --gradient-fossil: linear-gradient(180deg, hsl(45 85% 65%), hsl(40 75% 55%));
+    --gradient-earth: linear-gradient(90deg, hsl(25 35% 45%), hsl(95 35% 35%));
+    
+    /* Shadows */
+    --shadow-fossil: 0 10px 30px -10px hsl(45 85% 65% / 0.3);
+    --shadow-deep: 0 20px 50px -15px hsl(25 45% 25% / 0.4);
+    
+    /* Animations */
+    --transition-discover: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
