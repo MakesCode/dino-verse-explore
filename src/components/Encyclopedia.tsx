@@ -1,7 +1,7 @@
 import DinosaurCard from "./DinosaurCard";
-import trexImage from "@/assets/trex-portrait.jpg";
-import triceratopsImage from "@/assets/triceratops-portrait.jpg";
-import velociraptorImage from "@/assets/velociraptor-portrait.jpg";
+import trexImage from "/placeholder.svg";
+import triceratopsImage from "/placeholder.svg";
+import velociraptorImage from "/placeholder.svg";
 import { Skull, BookOpen } from "lucide-react";
 
 const Encyclopedia = () => {

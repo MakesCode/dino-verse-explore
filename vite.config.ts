@@ -15,8 +15,11 @@ export default defineConfig(({ mode }) => ({
     componentTagger(),
   ].filter(Boolean),
   resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+    alias: [
+      // Route UI imports to the new location
+      { find: "@/components/ui", replacement: path.resolve(__dirname, "./component/ui") },
+      // Keep application code aliasing to src
+      { find: "@", replacement: path.resolve(__dirname, "./src") },
+    ],
   },
 }));

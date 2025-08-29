@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import dinoLogo from "@/assets/dino-logo.png";
+import dinoLogo from "/placeholder.svg";
 
 const Header = () => {
   return (
