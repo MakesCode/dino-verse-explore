@@ -56,7 +56,7 @@ const DinosaurCard = ({
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="flex items-center space-x-2">
             <Calendar className="h-4 w-4 text-accent" />
-            <span className="text-muted-foreground">{period}</span>
+            <span className="text-muted-foreground">{period}lol</span>
           </div>
           
           <div className="flex items-center space-x-2">
