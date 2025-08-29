@@ -1,0 +1,151 @@
+{
+  "../../packages/assets/img/favicon.ico": {
+    "file": "assets/favicon.ico",
+    "src": "../../packages/assets/img/favicon.ico"
+  },
+  "../../packages/assets/img/logo-white-full.png": {
+    "file": "assets/logo-white-full.png",
+    "src": "../../packages/assets/img/logo-white-full.png"
+  },
+  "../../packages/assets/img/logoMobile-pro.png": {
+    "file": "assets/logoMobile-pro.png",
+    "src": "../../packages/assets/img/logoMobile-pro.png"
+  },
+  "../../packages/assets/img/logoMobile.png": {
+    "file": "assets/logoMobile.png",
+    "src": "../../packages/assets/img/logoMobile.png"
+  },
+  "../../packages/i18n/src/translations/cn.json": {
+    "file": "assets/cn-Ywm4_pDC.js",
+    "name": "cn",
+    "src": "../../packages/i18n/src/translations/cn.json",
+    "isDynamicEntry": true
+  },
+  "../../packages/i18n/src/translations/de.json": {
+    "file": "assets/de-Cs0zl5AI.js",
+    "name": "de",
+    "src": "../../packages/i18n/src/translations/de.json",
+    "isDynamicEntry": true
+  },
+  "../../packages/i18n/src/translations/en.json": {
+    "file": "assets/en-CMkgphdx.js",
+    "name": "en",
+    "src": "../../packages/i18n/src/translations/en.json",
+    "isDynamicEntry": true
+  },
+  "../../packages/i18n/src/translations/es.json": {
+    "file": "assets/es-DjK_nerH.js",
+    "name": "es",
+    "src": "../../packages/i18n/src/translations/es.json",
+    "isDynamicEntry": true
+  },
+  "../../packages/i18n/src/translations/fr.json": {
+    "file": "assets/fr-B8nboYBd.js",
+    "name": "fr",
+    "src": "../../packages/i18n/src/translations/fr.json",
+    "isDynamicEntry": true
+  },
+  "../../packages/i18n/src/translations/it.json": {
+    "file": "assets/it-Bv5-hbay.js",
+    "name": "it",
+    "src": "../../packages/i18n/src/translations/it.json",
+    "isDynamicEntry": true
+  },
+  "../../packages/i18n/src/translations/pt.json": {
+    "file": "assets/pt-CTmv45Mf.js",
+    "name": "pt",
+    "src": "../../packages/i18n/src/translations/pt.json",
+    "isDynamicEntry": true
+  },
+  "../../packages/i18n/src/translations/ru.json": {
+    "file": "assets/ru-Bd49W1ig.js",
+    "name": "ru",
+    "src": "../../packages/i18n/src/translations/ru.json",
+    "isDynamicEntry": true
+  },
+  "/Users/allanchauvin/Documents/Developpeur/work_repo/smartgarant-front-manaudou/apps/mila/app/lib/style/app.css": {
+    "file": "assets/app.css",
+    "src": "/Users/allanchauvin/Documents/Developpeur/work_repo/smartgarant-front-manaudou/apps/mila/app/lib/style/app.css"
+  },
+  "/Users/allanchauvin/Documents/Developpeur/work_repo/smartgarant-front-manaudou/apps/mila/app/lib/style/mila-theme.css": {
+    "file": "assets/mila-theme.css",
+    "src": "/Users/allanchauvin/Documents/Developpeur/work_repo/smartgarant-front-manaudou/apps/mila/app/lib/style/mila-theme.css"
+  },
+  "_RentalApproval-Bbii3zj-.js": {
+    "file": "assets/RentalApproval-Bbii3zj-.js",
+    "name": "RentalApproval"
+  },
+  "_ssr-_oDTT3uX.js": {
+    "file": "assets/ssr-_oDTT3uX.js",
+    "name": "ssr",
+    "dynamicImports": [
+      "../../packages/i18n/src/translations/cn.json",
+      "../../packages/i18n/src/translations/de.json",
+      "../../packages/i18n/src/translations/en.json",
+      "../../packages/i18n/src/translations/es.json",
+      "../../packages/i18n/src/translations/fr.json",
+      "../../packages/i18n/src/translations/it.json",
+      "../../packages/i18n/src/translations/pt.json",
+      "../../packages/i18n/src/translations/ru.json",
+      "app/routes/(home)/index.tsx?tsr-split=component",
+      "app/routes/(gli)/gli.$ID_rentalapproval.tsx?tsr-split=component",
+      "app/routes/(createGLI)/creategli.$ID_rentalapproval.tsx?tsr-split=component"
+    ],
+    "assets": [
+      "assets/favicon.ico",
+      "assets/logo-white-full.png",
+      "assets/logoMobile.png",
+      "assets/logoMobile-pro.png",
+      "assets/app.css",
+      "assets/mila-theme.css"
+    ]
+  },
+  "_useMergeDocuments-DajAzfUt.js": {
+    "file": "assets/useMergeDocuments-DajAzfUt.js",
+    "name": "useMergeDocuments",
+    "imports": [
+      "_ssr-_oDTT3uX.js"
+    ]
+  },
+  "app/routes/(createGLI)/creategli.$ID_rentalapproval.tsx?tsr-split=component": {
+    "file": "assets/creategli._ID_rentalapproval-Dih9DZbO.js",
+    "name": "creategli._ID_rentalapproval",
+    "src": "app/routes/(createGLI)/creategli.$ID_rentalapproval.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_ssr-_oDTT3uX.js",
+      "_useMergeDocuments-DajAzfUt.js",
+      "_RentalApproval-Bbii3zj-.js"
+    ]
+  },
+  "app/routes/(gli)/gli.$ID_rentalapproval.tsx?tsr-split=component": {
+    "file": "assets/gli._ID_rentalapproval-BYPwbUaW.js",
+    "name": "gli._ID_rentalapproval",
+    "src": "app/routes/(gli)/gli.$ID_rentalapproval.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_ssr-_oDTT3uX.js",
+      "_useMergeDocuments-DajAzfUt.js",
+      "_RentalApproval-Bbii3zj-.js"
+    ]
+  },
+  "app/routes/(home)/index.tsx?tsr-split=component": {
+    "file": "assets/index-DiZ8rbfU.js",
+    "name": "index",
+    "src": "app/routes/(home)/index.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_ssr-_oDTT3uX.js",
+      "_RentalApproval-Bbii3zj-.js"
+    ]
+  },
+  "virtual:$vinxi/handler/ssr": {
+    "file": "assets/ssr-B5mJBuPS.js",
+    "name": "ssr",
+    "src": "virtual:$vinxi/handler/ssr",
+    "isEntry": true,
+    "imports": [
+      "_ssr-_oDTT3uX.js"
+    ]
+  }
+}

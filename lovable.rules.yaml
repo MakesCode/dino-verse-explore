@@ -1,0 +1,15 @@
+component_mapping:
+  LovableButton: "main-app/app/components/SmallButton"
+  LovableInput: "@/components/ui/input"
+  LovableCard: "@/components/ui/card"
+  LovableTable: "@/components/ui/data-table"
+  Modal: "@/components/ui/dialog"
+notes:
+  - "Si un mapping n'existe pas, créer un composant shadcn dans src/components/ui/ et export named"
+  - "Veille bien à faire différents composants par fonctionnalité/section"
+content:
+  - "Ne jamais écrire de texte en dur, utilise toujours `content.key` importé depuis `@/support/content`"
+actions:
+  - "Ne jamais écrire de callback inline, utilise toujours `actions.key` importé depuis `@/support/actions`"
+components:
+  - "Utilise les composants déjà existants dans main-app/app/components pour les composants qui n'ont pas de mapping"
