@@ -9,7 +9,15 @@ import { RentalApprovalStatusFilter, useFiltres } from './useFiltres';
 import { GliRentalApprovalStatus, RentalApproval } from '../../../../features/gli/RentalApprovals/model/RentalApproval';
 import { retrieveSubscriptionQueryOption } from '../../../../features/gli/Subscriptions/retrieveSubscription/retrieveSubscriptionQueryOption';
 import { retrieveRentalApprovalsQueryOption } from '../../../../features/gli/RentalApprovals/retrieveRentalApprovals/retrieveRentalApprovalsQueryOption';
-import { archiveProjectMutationOption } from '../../../../features/gli/RentalApprovals/archiveProject/archiveProjectMutationOption';
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '../../../../../../packages/component/ui/tooltip'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../../../../../packages/component/ui/dropdown-menu'
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '../../../../../../packages/component/ui/select'
+import { Button} from '../../../../../../packages/component/ui/button'
+import {Badge } from '../../../../../../packages/component/ui/badge'
+import { Separator} from '../../../../../../packages/component/ui/separator'
+import { Input} from '../../../../../../packages/component/ui/input'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../../../../packages/component/ui/table'
+import { archiveProjectMutationOption } from '../../../../features/gli/archiveProject/archiveProjectMutationOption';
 
 const getStatusInfo = (status: GliRentalApprovalStatus) => {
   switch (status) {

@@ -26,7 +26,7 @@ export const useNewRequestPresenter = () => {
     await mutationInit.mutateAsync({
       data: {},
       params: {
-        subscriptionId: data?.id!,
+        subscriptionId: data?.id ?? '',
       },
     });
   };

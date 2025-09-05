@@ -6,7 +6,7 @@ export interface CtxretrieveSubscriptionRentalApprovals {
     rentalApprovalId: string;
     subscriptionId: string;
   };
-  data: {};
+  data: object;
 }
 export const retrieveSubscriptionRentalApprovalsUsecase = createAppAsyncThunk(
   'rentalApprovals/retrieveSubscriptionRentalApprovalsUsecase',

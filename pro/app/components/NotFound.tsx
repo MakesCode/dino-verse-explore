@@ -1,4 +1,4 @@
-import { Button } from '@sg/ui';
+import { Button } from '../../../packages/component/ui/button';
 import { Link, useNavigate } from '@tanstack/react-router';
 import logo from '@sg/assets/img/logo-white-full.png';
 

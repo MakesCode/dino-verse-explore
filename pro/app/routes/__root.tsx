@@ -4,15 +4,13 @@ import appCss from '../lib/style/app.css?url';
 import themecss from '../lib/style/mila-theme.css?url';
 import type { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { SidebarProvider, Toaster } from '@sg/ui';
 import React from 'react';
 import logo from '@sg/assets/img/favicon.ico?url';
 import { Provider } from 'react-redux';
 import { DefaultCatchBoundary } from '../components/DefaultCatchBoundary';
 import { NotFound } from '../components/NotFound';
 import { createStoreWithDependencies, Dependencies } from '../lib/redux/dependencies';
-import defaultTranslation from '@sg/i18ndefault/translations/fr.json';
-
+import {SidebarProvider} from '../../../packages/component/ui/sidebar';
 const TanStackRouterDevtools = process.env.PROD
   ? () => null
   : React.lazy(() =>
@@ -68,17 +66,12 @@ export const Route = createRootRouteWithContext<{
   notFoundComponent: () => <NotFound />,
   component: RootComponent,
   beforeLoad: async (ctx) => {
-    const i18nKeyCookie = getCookieIsomorphic(I18N_KEY_COOKIE_NAME)();
-    const locale = i18nKeyCookie || 'fr';
 
-    const translationsApi: {} = await serverSideTranslations(locale);
-    const translations: {} = isEmpty(translationsApi) ? defaultTranslation : translationsApi;
-    return { locale: isEmpty(translationsApi) ? 'fr' : locale, translations };
   },
 });
 
 function RootComponent() {
-  const { store, locale, translations } = Route.useRouteContext();
+  const { store, locale,  } = Route.useRouteContext();
 
   return (
     <RootDocument>
@@ -90,12 +83,10 @@ function RootComponent() {
           } as React.CSSProperties
         }
       >
-        <I18nProvider defaultLocale={locale} defaultTranslations={translations} stockage_cookie={I18N_KEY_COOKIE_NAME}>
           <Provider store={store}>
             <Outlet />
             <NotificationProvider />
           </Provider>
-        </I18nProvider>
       </SidebarProvider>
     </RootDocument>
   );
@@ -120,9 +111,6 @@ import { useState, useEffect } from 'react';
 import { NotificationProvider } from '../lib/notification/NotificationProvider';
 import { getCookieIsomorphic } from '../lib/tanstack-start/getCookieIsomorphic';
 import { I18N_KEY_COOKIE_NAME } from '../lib/constants';
-import { serverSideTranslations } from '../lib/i18n/serverSideTranslations';
-import { isEmpty } from '../lib/utils/isEmpty';
-import { I18nProvider } from '../lib/i18n/i18nContext';
 
 export function AppLoader({ children }: { children: React.ReactNode }) {
   const [isAppLoaded, setIsAppLoaded] = useState(false);

@@ -13,20 +13,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "yup": "catalog:",
-    "zod": "catalog:"
-  },
-  "devDependencies": {
-    "@types/canvas-confetti": "^1.9.0",
-    "@types/js-cookie": "catalog:",
-    "@types/react": "catalog:",
-    "@types/react-dom": "catalog:",
-    "@vitejs/plugin-react": "catalog:",
-    "babel-plugin-react-compiler": "catalog:",
-    "eslint-plugin-react-compiler": "catalog:",
-    "typescript": "catalog:",
-    "vite-tsconfig-paths": "catalog:"
-  }
+  "license": "ISC"
 }

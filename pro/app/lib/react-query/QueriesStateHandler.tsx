@@ -1,11 +1,10 @@
 import { UseQueryResult } from '@tanstack/react-query';
-import { ReactNode } from '@tanstack/react-router';
 
 interface QueriesStateHandlerProps {
   queries: Array<UseQueryResult<any, any>>;
-  children: ReactNode; // Plus une fonction, juste un ReactNode
-  loadingFallback?: ReactNode;
-  errorFallback?: (errors: Array<UseQueryResult<any, any>>) => ReactNode;
+  children: any; // Plus une fonction, juste un any
+  loadingFallback?: any;
+  errorFallback?: (errors: Array<UseQueryResult<any, any>>) => any;
 }
 
 function QueriesStateHandler({
@@ -13,7 +12,7 @@ function QueriesStateHandler({
   children,
   loadingFallback = <div>Chargement...</div>,
   errorFallback,
-}: QueriesStateHandlerProps): ReactNode {
+}: QueriesStateHandlerProps): any {
   const isAnyLoading = queries.some((query) => query.isLoading);
   const errors = queries.filter((query) => query.error);
 

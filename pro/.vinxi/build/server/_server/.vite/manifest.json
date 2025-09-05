@@ -1,8 +1,0 @@
-{
-  "virtual:$vinxi/handler/server": {
-    "file": "assets/server-C12NCR4E.js",
-    "name": "server",
-    "src": "virtual:$vinxi/handler/server",
-    "isEntry": true
-  }
-}

@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 import { retrieveSubscriptionQueryOption } from '../../../features/gli/Subscriptions/retrieveSubscription/retrieveSubscriptionQueryOption';
 import { retrieveKpiQueryOption } from '../../../features/gli/Subscriptions/retrieveKpi/retrieveKpiQueryOption';
-import { Sidebar } from '../../../components/sidebar/Sidebar';
-import { SiteHeader } from '../../../components/sidebar/SiteHeader';
+import { Sidebar } from '../../../../../packages/component/sgComponent/sidebar/Sidebar';
+import { SiteHeader } from '../../../../../packages/component/sgComponent/sidebar/SiteHeader';
 
 export const Route = createFileRoute('/(gli)/(home)/')({
   component: RouteComponent,
@@ -21,7 +21,7 @@ function RouteComponent() {
     {
       data: {},
       params: {
-        subscriptionId: data?.id!,
+        subscriptionId: data?.id ?? '',
       },
     },
     dispatch,
@@ -36,11 +36,11 @@ function RouteComponent() {
           <div className="">
             <DashboardStats
               stats={{
-                averageRent: kpi?.averageGuaranteedRentAmount! ?? 0,
-                guaranteedTenants: kpi?.activeRentalApprovalCount! ?? 0,
-                openClaims: kpi?.claimCount! ?? 0,
-                totalCandidates: kpi?.rentalApprovalCount! ?? 0,
-                validatedFiles: kpi?.approvedRentalApprovalCount! ?? 0,
+                averageRent: kpi?.averageGuaranteedRentAmount ?? 0,
+                guaranteedTenants: kpi?.activeRentalApprovalCount ?? 0,
+                openClaims: kpi?.claimCount ?? 0,
+                totalCandidates: kpi?.rentalApprovalCount ?? 0,
+                validatedFiles: kpi?.approvedRentalApprovalCount ?? 0,
               }}
             />
           </div>

@@ -1,4 +1,4 @@
-import { ParsedField } from '../../../../component/sgComponent/autoform/core/types';
+import { ParsedField } from '../../../../packages/component/sgComponent/autoform/core/types';
 
 // Types TypeScript
 interface FieldConfig {

@@ -7,11 +7,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/ui/*": ["./component/ui/*"],
+      "@/components/ui/*": ["packages/component/ui/*"],
       "@/*": ["./src/*"]
     },
-    "noImplicitAny": false,
-    "noUnusedParameters": false,
+    "noImplicitAny": true,
+    "noUnusedParameters": true,
     "skipLibCheck": true,
     "allowJs": true,
     "noUnusedLocals": false,

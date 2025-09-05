@@ -2318,6 +2318,11 @@
   dependencies:
     "@tanstack/router-devtools-core" "1.131.28"
 
+"@tanstack/react-router-with-query@^1.120.12":
+  version "1.130.17"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-router-with-query/-/react-router-with-query-1.130.17.tgz#fb05997185c6cff75d7bffaaab684ef3bd679867"
+  integrity sha512-TNaSocW20KuPwUojEm130DLWTr9M5hsSzxiu4QqS2jNCnrGLuDrwMHyP+6fq13lG3YuU4u9O1qajxfJIGomZCg==
+
 "@tanstack/react-router@ ^1.120.12", "@tanstack/react-router@1.131.28":
   version "1.131.28"
   resolved "https://registry.yarnpkg.com/@tanstack/react-router/-/react-router-1.131.28.tgz#f1ec599d9f460b58a438e195e8ae576f7a0ebbab"

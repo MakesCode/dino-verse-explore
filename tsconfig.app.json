@@ -23,9 +23,9 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/components/ui/*": ["./component/ui/*"],
+      "@/components/ui/*": ["packages/component/ui/*"],
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "component"]
+  "include": ["src", "packages/component"]
 }

@@ -1,7 +1,7 @@
-import { Button } from '@sg/ui';
+import { Button } from '../../../../../../../packages/component/ui/button';
 import { Plus } from 'lucide-react';
 import { useNewRequestPresenter } from './useNewRequestPresenter';
-import { Loading } from '../../../../../../../component/sgComponent/Loading';
+import { Loading } from '../../../../../../../packages/component/sgComponent/Loading';
 
 export const NewRequest = () => {
   const { handleInit, isLoading } = useNewRequestPresenter();
