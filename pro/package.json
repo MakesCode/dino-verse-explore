@@ -1,17 +1,11 @@
 {
-  "name": "@sg/pro",
-  "version": "1.0.0",
+  "name": "pro-app",
   "private": true,
-  "description": "",
-  "main": "index.js",
-  "type": "module",
+  "version": "0.0.0",
   "scripts": {
-    "dev": "vinxi dev",
+    "dev": "vite dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "clean": "rm -rf node_modules"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "clean": "rm -rf .output node_modules"
+  }
 }

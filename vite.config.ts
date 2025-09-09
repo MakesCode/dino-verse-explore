@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: [
       // Route UI imports to the new location
-      { find: "@/components/ui", replacement: path.resolve(__dirname, "./component/ui") },
+      { find: "@/components/ui", replacement: path.resolve(__dirname, "./packages/component/ui") },
       // Keep application code aliasing to src
       { find: "@", replacement: path.resolve(__dirname, "./src") },
     ],
