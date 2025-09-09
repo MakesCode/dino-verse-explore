@@ -13,7 +13,6 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     tsConfigPaths(),
-    tanstackStart({ customViteReactPlugin: true }),
     react(),
     mode === 'development' &&
     componentTagger(),

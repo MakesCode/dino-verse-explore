@@ -1,6 +1,11 @@
 import { DependenciesProvider } from "./DependenciesProvider"
+import { ReactNode } from "react"
 
-export const Provider = (props) => {
+interface ProviderProps {
+  children: ReactNode
+}
+
+export const Provider = (props: ProviderProps) => {
   return (
     <>
       <DependenciesProvider>
