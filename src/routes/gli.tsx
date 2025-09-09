@@ -1,10 +1,15 @@
+import { createFileRoute } from '@tanstack/react-router';
 import { Users, CheckCircle, Home, AlertTriangle, Euro } from 'lucide-react';
 import { Sidebar } from '../../packages/component/sgComponent/sidebar/Sidebar';
 import { SiteHeader } from '../../packages/component/sgComponent/sidebar/SiteHeader';
 import RentalGuaranteeManagement from '../../packages/component/sgComponent/gli/RentalGuaranteeManagement';
 import { useDependencies } from '../lib/depencyInversion/DependenciesProvider';
 
-export default function GliPage() {
+export const Route = createFileRoute('/gli')({
+  component: GliPage,
+});
+
+function GliPage() {
   const { useSubscriptionPresenter, useKpiPresenter, useRentalApprovalsPresenter } = useDependencies();
   const { subscription } = useSubscriptionPresenter();
   const { kpi } = useKpiPresenter({ subscriptionId: subscription?.id });
@@ -59,7 +64,7 @@ function DashboardStats({
   );
 }
 
-function StatCard({ icon, value, title, color }) {
+function StatCard({ icon, value, title, color }: { icon: React.ReactNode; value: number | string; title: string; color: string }) {
   return (
     <div className="flex-1 min-w-[150px] bg-white border border-gray-100 rounded-md shadow-sm p-3">
       <div className="flex items-center space-x-3">

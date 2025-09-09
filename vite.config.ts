@@ -1,7 +1,9 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import tsConfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -10,6 +12,8 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
+    tsConfigPaths(),
+    tanstackStart({ customViteReactPlugin: true }),
     react(),
     mode === 'development' &&
     componentTagger(),
