@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import MockRentalApprovalsGateway from '../api/api-rentalApprovals';
 
 export function createUseRentalApprovalsPresenterMock() {
@@ -19,50 +20,22 @@ export function createUseRentalApprovalsPresenterMock() {
       setPageSize(10);
     };
 
-    // data state
-    const [rows, setRows] = useState<any[]>([]);
-    const [totalCount, setTotalCount] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isFetching, setIsFetching] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const queryClient = useQueryClient();
+    const queryKey = ['mock', 'rentalApprovals', subscriptionId, search, status, groupe, pageIndex, pageSize] as const;
+    const { data, isLoading, isFetching, isError } = useQuery({
+      queryKey,
+      enabled: !!subscriptionId,
+      queryFn: () =>
+        gateway.getRentalApprovals({
+          params: { subscriptionId: subscriptionId!, search, pageIndex, limite: pageSize, status, groupe },
+          data: {},
+        } as any),
+      select: (res: any) => res.payload,
+      placeholderData: (prev) => prev,
+    });
 
-    useEffect(() => {
-      if (!subscriptionId) return;
-      let mounted = true;
-      const fetch = async () => {
-        setIsFetching(true);
-        setIsLoading(pageIndex === 0 && rows.length === 0);
-        setIsError(false);
-        try {
-          const res = await gateway.getRentalApprovals({
-            params: {
-              subscriptionId,
-              search,
-              pageIndex,
-              limite: pageSize,
-              status,
-              groupe,
-            },
-            data: {},
-          } as any);
-          if (!mounted) return;
-          setRows(res.payload.data);
-          setTotalCount(res.payload.rowCount);
-        } catch (e) {
-          if (!mounted) return;
-          setIsError(true);
-        } finally {
-          if (!mounted) return;
-          setIsLoading(false);
-          setIsFetching(false);
-        }
-      };
-      fetch();
-      return () => {
-        mounted = false;
-      };
-    }, [subscriptionId, search, status, groupe, pageIndex, pageSize]);
-
+    const rows = data?.data ?? [];
+    const totalCount = data?.rowCount ?? 0;
     const pageCount = Math.ceil(totalCount / pageSize) || 1;
     const hasNextPage = pageIndex < pageCount - 1;
     const hasPreviousPage = pageIndex > 0;
@@ -73,12 +46,16 @@ export function createUseRentalApprovalsPresenterMock() {
       // mock navigation: log only
       console.log('goToDetails', id);
     };
+    const { mutateAsync: mutateArchive } = useMutation({
+      mutationKey: ['mock', 'archiveRentalApproval'],
+      mutationFn: (id: string) =>
+        gateway.postArchiveProject({ params: { subscriptionId: subscriptionId || '', rentalApprovalId: id }, data: {} } as any),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey });
+      },
+    });
     const archive = async (id: string) => {
-      await gateway.postArchiveProject({ params: { subscriptionId: subscriptionId || '', rentalApprovalId: id }, data: {} } as any);
-      // refresh current page
-      const res = await gateway.getRentalApprovals({ params: { subscriptionId: subscriptionId || '', search, pageIndex, limite: pageSize, status, groupe }, data: {} } as any);
-      setRows(res.payload.data);
-      setTotalCount(res.payload.rowCount);
+      await mutateArchive(id);
     };
 
     const statusOptions = [
@@ -140,4 +117,3 @@ export function createUseRentalApprovalsPresenterMock() {
   }
   return useRentalApprovalsPresenter;
 }
-
