@@ -1,0 +1,53 @@
+// app.config.ts
+import { defineConfig } from '@tanstack/react-start/config';
+
+import tsConfigPaths from 'vite-tsconfig-paths';
+
+const ReactCompilerConfig = {
+  /* ... */
+};
+
+export default defineConfig({
+  vite: {
+    plugins: [
+      tsConfigPaths({
+        projects: ['./tsconfig.json'],
+      }),
+      {
+        name: 'allow-dev-host',
+        config() {
+          return {
+            server: {
+              allowedHosts: ['dev.smart-garant.fr'],
+              host: 'dev.smart-garant.fr',
+            },
+          };
+        },
+      },
+    ],
+
+    build: {
+      rollupOptions: {
+        external: ['../pkg', 'pkg', 'fsevents'],
+        output: {
+          entryFileNames: `assets/[name]-[hash].js`,
+          chunkFileNames: `assets/[name]-[hash].js`,
+          assetFileNames: `assets/[name].[ext]`, // pas de hash
+        },
+      },
+    },
+    ssr: {
+      external: ['../pkg', 'pkg', 'fsevents'],
+    },
+  },
+  react: {
+    babel: {
+      plugins: ['babel-plugin-react-compiler', ReactCompilerConfig],
+    },
+  },
+  server: {
+    preset: 'node-server',
+    // Enable HTTPS for local dev (vinxi will generate/use a local certificate)
+    https: true,
+  },
+});
