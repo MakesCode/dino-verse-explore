@@ -1,26 +1,55 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Search, MoreHorizontal, ChevronLeft, ChevronRight, User, Building, Users } from 'lucide-react';
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable, ColumnDef } from '@tanstack/react-table';
-import { RentalApprovalStatusFilter } from './useFiltres';
-import { GliRentalApprovalStatus, RentalApproval } from '../../../../features/gli/RentalApprovals/model/RentalApproval';
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '../../../../../../packages/component/ui/tooltip'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../../../../../packages/component/ui/dropdown-menu'
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from '../../../../../../packages/component/ui/select'
-import { Button} from '../../../../../../packages/component/ui/button'
-import {Badge } from '../../../../../../packages/component/ui/badge'
-import { Separator} from '../../../../../../packages/component/ui/separator'
-import { Input} from '../../../../../../packages/component/ui/input'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../../../../packages/component/ui/table'
-import { useRentalApprovalsPresenter } from '../../../../features/gli/RentalApprovals/presenter/useRentalApprovalsPresenter';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../ui/tooltip';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../ui/dropdown-menu';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../ui/select';
+import { Button } from '../../ui/button';
+import { Badge } from '../../ui/badge';
+import { Separator } from '../../ui/separator';
+import { Input } from '../../ui/input';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../ui/table';
 
-// status mapping moved to presenter
+type Presenter = {
+  // filters
+  search: string;
+  status: number | undefined;
+  groupe: number | undefined;
+  pageIndex: number;
+  pageSize: number;
+  setSearch: (v: string) => void;
+  setStatus: (v: number | undefined) => void;
+  setGroupe: (v: number | undefined) => void;
+  setPageIndex: (v: number) => void;
+  setPageSize: (v: number) => void;
+  resetFilters: () => void;
 
-const columnHelper = createColumnHelper<RentalApproval>();
-// status options provided by presenter
+  // data
+  rows: any[];
+  hasData: boolean;
+  isLoading: boolean;
+  isFetching: boolean;
+  isError: boolean;
+  totalCount: number;
+  pageCount: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  startItem: number;
+  endItem: number;
 
-const AddressCell = ({ address }) => {
+  // actions
+  goToDetails: (id: string) => void;
+  archive: (id: string) => Promise<void>;
+
+  // constants
+  statusOptions: { label: string; value: number | undefined }[];
+  getStatusInfo: (status: number) => { text: string; variant: string };
+};
+
+const columnHelper = createColumnHelper<any>();
+
+const AddressCell = ({ address }: { address: string }) => {
   const shortAddress = address?.length > 50 ? address.substring(0, 50) + '...' : address;
-
   return (
     <TooltipProvider>
       <Tooltip>
@@ -37,22 +66,15 @@ const AddressCell = ({ address }) => {
   );
 };
 
-const OwnersCell = ({ owners }) => {
+const OwnersCell = ({ owners }: { owners: any[] }) => {
   if (!owners || owners?.length === 0) return <span className="text-gray-400">-</span>;
-
   const primaryOwner = owners?.[0];
   const additionalCount = owners?.length - 1;
-
-  const getPrimaryOwnerName = (owner) => {
-    if (owner.naturalEntity) {
-      return `${owner.naturalEntity.firstName} ${owner.naturalEntity.lastName}`;
-    }
-    if (owner.legalEntity) {
-      return owner.legalEntity.name;
-    }
+  const getPrimaryOwnerName = (owner: any) => {
+    if (owner.naturalEntity) return `${owner.naturalEntity.firstName} ${owner.naturalEntity.lastName}`;
+    if (owner.legalEntity) return owner.legalEntity.name;
     return 'Propriétaire inconnu';
   };
-
   return (
     <TooltipProvider>
       <Tooltip>
@@ -68,9 +90,7 @@ const OwnersCell = ({ owners }) => {
               {additionalCount > 0 && (
                 <div className="flex items-center gap-1 mt-0.5">
                   <Users className="h-3 w-3 text-gray-400" />
-                  <span className="text-xs text-gray-500">
-                    +{additionalCount} autre{additionalCount > 1 ? 's' : ''}
-                  </span>
+                  <span className="text-xs text-gray-500">+{additionalCount} autre{additionalCount > 1 ? 's' : ''}</span>
                 </div>
               )}
             </div>
@@ -80,7 +100,7 @@ const OwnersCell = ({ owners }) => {
           <div>
             <div className="font-medium mb-2">Propriétaire{owners?.length > 1 ? 's' : ''}</div>
             <div className="space-y-2 max-w-sm">
-              {owners?.map((owner, index) => (
+              {owners?.map((owner) => (
                 <div key={owner.id} className="flex items-center gap-2">
                   {owner.naturalEntity ? <User className="h-3 w-3" /> : <Building className="h-3 w-3" />}
                   <span className="text-sm">
@@ -98,22 +118,15 @@ const OwnersCell = ({ owners }) => {
   );
 };
 
-const TenantsCell = ({ tenants }) => {
+const TenantsCell = ({ tenants }: { tenants: any[] }) => {
   if (!tenants || tenants?.length === 0) return <span></span>;
-
   const primaryTenant = tenants?.[0];
   const additionalCount = tenants?.length - 1;
-
-  const getPrimaryTenantName = (tenant) => {
-    if (tenant.tenant?.naturalEntity) {
-      return `${tenant.tenant.naturalEntity.firstName} ${tenant.tenant.naturalEntity.lastName}`;
-    }
-    if (tenant.tenant?.legalEntity) {
-      return tenant.tenant.legalEntity.name;
-    }
+  const getPrimaryTenantName = (tenant: any) => {
+    if (tenant.tenant?.naturalEntity) return `${tenant.tenant.naturalEntity.firstName} ${tenant.tenant.naturalEntity.lastName}`;
+    if (tenant.tenant?.legalEntity) return tenant.tenant.legalEntity.name;
     return 'Locataire inconnu';
   };
-
   return (
     <TooltipProvider>
       <Tooltip>
@@ -129,9 +142,7 @@ const TenantsCell = ({ tenants }) => {
               {additionalCount > 0 && (
                 <div className="flex items-center gap-1 mt-0.5">
                   <Users className="h-3 w-3 text-gray-400" />
-                  <span className="text-xs text-gray-500">
-                    +{additionalCount} autre{additionalCount > 1 ? 's' : ''}
-                  </span>
+                  <span className="text-xs text-gray-500">+{additionalCount} autre{additionalCount > 1 ? 's' : ''}</span>
                 </div>
               )}
             </div>
@@ -141,7 +152,7 @@ const TenantsCell = ({ tenants }) => {
           <div>
             <div className="font-medium mb-2">Locataire{tenants?.length > 1 ? 's' : ''}</div>
             <div className="space-y-2 max-w-sm">
-              {tenants?.map((tenant, index) => (
+              {tenants?.map((tenant) => (
                 <div key={tenant.id} className="flex items-center gap-2">
                   {tenant.tenant?.naturalEntity ? <User className="h-3 w-3" /> : <Building className="h-3 w-3" />}
                   <span className="text-sm">
@@ -159,8 +170,7 @@ const TenantsCell = ({ tenants }) => {
   );
 };
 
-export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?: string }) => {
-  const presenter = useRentalApprovalsPresenter({ subscriptionId });
+export const RentalGuaranteeManagement = ({ presenter }: { presenter: Presenter }) => {
   const {
     search,
     status,
@@ -173,10 +183,11 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
     setPageIndex,
     setPageSize,
     resetFilters,
+
     rows,
     hasData,
-    isLoading: isPresenterLoading,
-    isFetching: isFetchingRentalApprovals,
+    isLoading,
+    isFetching,
     isError,
     totalCount,
     pageCount,
@@ -187,9 +198,10 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
     statusOptions,
     getStatusInfo,
   } = presenter;
-  const columns = useMemo<ColumnDef<RentalApproval>[]>(
+
+  const columns = useMemo<ColumnDef<any>[]>(
     () => [
-      columnHelper.accessor('references.rentalApprovalRef', {
+      columnHelper.accessor((row) => row?.references?.rentalApprovalRef, {
         id: 'rentalApprovalRef',
         header: 'Référence',
         cell: ({ getValue }) => {
@@ -199,39 +211,33 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
         enableSorting: false,
         size: 140,
       }),
-      columnHelper.accessor('owners', {
+      columnHelper.accessor((row) => row?.owners, {
         id: 'owners',
         header: 'Propriétaire(s)',
-        cell: ({ getValue }) => {
-          const owners = getValue();
-          return <OwnersCell owners={owners} />;
-        },
+        cell: ({ getValue }) => <OwnersCell owners={getValue() as any[]} />,
         enableSorting: false,
         size: 200,
       }),
-      columnHelper.accessor('tenants', {
+      columnHelper.accessor((row) => row?.tenants, {
         id: 'tenants',
         header: 'Locataire(s)',
-        cell: ({ getValue }) => {
-          const tenants = getValue();
-          return <TenantsCell tenants={tenants} />;
-        },
+        cell: ({ getValue }) => <TenantsCell tenants={getValue() as any[]} />,
         enableSorting: false,
         size: 200,
       }),
-      columnHelper.accessor('realEstateLot.address.fullAddress', {
+      columnHelper.accessor((row) => row?.realEstateLot?.address?.fullAddress, {
         id: 'address',
         header: 'Adresse du lot',
-        cell: ({ getValue }) => <AddressCell address={getValue()} />,
+        cell: ({ getValue }) => <AddressCell address={(getValue() as string) || ''} />,
         enableSorting: false,
         size: 220,
       }),
-      columnHelper.accessor('createDate', {
+      columnHelper.accessor((row) => row?.createDate, {
         id: 'createDate',
         header: 'Date de demande',
         cell: ({ getValue }) => (
           <span className="text-sm">
-            {new Date(getValue()).toLocaleDateString('fr-FR', {
+            {new Date(getValue() as string).toLocaleDateString('fr-FR', {
               day: '2-digit',
               month: '2-digit',
               year: 'numeric',
@@ -241,21 +247,21 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
         enableSorting: false,
         size: 150,
       }),
-      columnHelper.accessor('businessData.rentAmount', {
+      columnHelper.accessor((row) => row?.businessData?.rentAmount, {
         id: 'rentAmount',
         header: 'Loyer CC',
         cell: ({ getValue }) => {
-          const amount = getValue();
+          const amount = getValue() as number | undefined;
           return <span className="font-medium">{amount ? `${amount.toFixed(2)} €` : ''}</span>;
         },
         enableSorting: false,
         size: 120,
       }),
-      columnHelper.accessor('status', {
+      columnHelper.accessor((row) => row?.status, {
         id: 'status',
         header: 'Statut de la demande',
         cell: ({ getValue }) => {
-          const statusInfo = getStatusInfo(getValue());
+          const statusInfo = getStatusInfo(getValue() as number);
           return (
             <div className="text-center">
               <Badge variant={statusInfo.variant as any}>{statusInfo.text}</Badge>
@@ -277,12 +283,7 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    presenter.goToDetails(row.original.id);
-                  }}
-                >
+                <DropdownMenuItem onClick={(e) => (e.stopPropagation(), presenter.goToDetails(row.original.id))}>
                   Voir détails
                 </DropdownMenuItem>
                 <Separator />
@@ -304,7 +305,8 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
     ],
     [getStatusInfo, presenter],
   );
-  const table = useReactTable<RentalApproval>({
+
+  const table = useReactTable<any>({
     data: rows,
     columns,
     manualPagination: true,
@@ -312,8 +314,6 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
     manualFiltering: true,
     getCoreRowModel: getCoreRowModel(),
   });
-
-  const isLoading = isPresenterLoading || !subscriptionId;
 
   return (
     <div className=" w-full">
@@ -325,9 +325,7 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
               <p className="text-sm text-muted-foreground mt-1">Gérez vos demandes de GLI</p>
             </div>
             <div className="flex items-center gap-3">
-                <Button size="sm" >
-                  Nouvelle demande
-                </Button>
+              <Button size="sm">Nouvelle demande</Button>
             </div>
           </div>
         </div>
@@ -336,17 +334,11 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
       <div className="  px-6 py-6">
         <div className="flex items-center gap-1 mb-6">
           {[
-            { id: '1', label: 'En cours', count: 7, value: RentalApprovalStatusFilter.Ongoing },
-            { id: '2', label: 'Actives', count: 12, value: RentalApprovalStatusFilter.Active },
-            { id: '3', label: 'Archivées', count: 45, value: RentalApprovalStatusFilter.Archived },
+            { id: '1', label: 'En cours', count: 7, value: 1 },
+            { id: '2', label: 'Actives', count: 12, value: 2 },
+            { id: '3', label: 'Archivées', count: 45, value: 3 },
           ].map((tab) => (
-            <Button
-              key={tab.id}
-              variant={groupe === tab.value ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => setGroupe(tab.value)}
-              className="justify-start"
-            >
+            <Button key={tab.id} variant={groupe === tab.value ? 'default' : 'ghost'} size="sm" onClick={() => setGroupe(tab.value)} className="justify-start">
               {tab.label}
               <Badge variant="ocean" className="ml-2">
                 {tab.count}
@@ -361,10 +353,7 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input placeholder="Rechercher..." className="pl-9 w-80" value={search} onChange={(e) => setSearch(e.target.value)} />
             </div>
-            <Select
-              value={status?.toString() || 'all'}
-              onValueChange={(value) => setStatus(value === 'all' ? undefined : (Number(value) as GliRentalApprovalStatus))}
-            >
+            <Select value={status?.toString() || 'all'} onValueChange={(value) => setStatus(value === 'all' ? undefined : Number(value))}>
               <SelectTrigger className="w-48">
                 <SelectValue placeholder="Statut" />
               </SelectTrigger>
@@ -411,7 +400,7 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
         ) : (
           <>
             <div className="relative shadow-[0_0.7px_0_0_rgba(0,0,0,0.1)] shadow-bottom-only rounded-md">
-              {isFetchingRentalApprovals && !isLoading && (
+              {isFetching && !isLoading && (
                 <div className="absolute top-0 left-0 right-0 z-20">
                   <div className="h-1 bg-gradient-to-r from-primary via-accent to-primary animate-pulse">
                     <div className="h-full bg-gradient-to-r from-transparent via-background to-transparent opacity-30"></div>
@@ -439,11 +428,7 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
                     <TableBody>
                       {hasData ? (
                         table.getRowModel().rows.map((row) => (
-                          <TableRow
-                            key={row.id}
-                            className="cursor-pointer"
-                            onClick={() => presenter.goToDetails(row.original.id)}
-                          >
+                          <TableRow key={row.id} className="cursor-pointer" onClick={() => presenter.goToDetails(row.original.id)}>
                             {row.getVisibleCells().map((cell) => (
                               <TableCell key={cell.id} style={{ width: `${cell.column.getSize()}px` }} className="overflow-hidden">
                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -460,9 +445,7 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
                                   <Search className="h-6 w-6 text-muted-foreground" />
                                 </div>
                                 <h3 className="font-medium mb-1">Aucun résultat</h3>
-                                <p className="text-sm text-muted-foreground">
-                                  {search || status ? 'Aucune garantie GLI ne correspond à vos critères' : 'Aucune garantie GLI trouvée'}
-                                </p>
+                                <p className="text-sm text-muted-foreground">{search || status ? 'Aucune garantie GLI ne correspond à vos critères' : 'Aucune garantie GLI trouvée'}</p>
                               </div>
                             </div>
                           </TableCell>
@@ -488,12 +471,7 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
                 <Button variant="outline" size="sm" onClick={() => setPageIndex(0)} disabled={!hasPreviousPage || totalCount === 0}>
                   Premier
                 </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setPageIndex(pageIndex - 1)}
-                  disabled={!hasPreviousPage || totalCount === 0}
-                >
+                <Button variant="outline" size="sm" onClick={() => setPageIndex(pageIndex - 1)} disabled={!hasPreviousPage || totalCount === 0}>
                   <ChevronLeft className="h-4 w-4" />
                   Précédent
                 </Button>
@@ -501,12 +479,7 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
                   Suivant
                   <ChevronRight className="h-4 w-4" />
                 </Button>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setPageIndex(Math.max(0, pageCount - 1))}
-                  disabled={!hasNextPage || totalCount === 0}
-                >
+                <Button variant="outline" size="sm" onClick={() => setPageIndex(Math.max(0, pageCount - 1))} disabled={!hasNextPage || totalCount === 0}>
                   Dernier
                 </Button>
               </div>
@@ -517,3 +490,6 @@ export const RentalGuaranteeManagement = ({ subscriptionId }: { subscriptionId?:
     </div>
   );
 };
+
+export default RentalGuaranteeManagement;
+

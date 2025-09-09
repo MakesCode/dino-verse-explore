@@ -8,7 +8,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@sg/ui';
+} from '../ui/alert-dialog';
 import React from 'react';
 import { Loading } from './Loading';
 interface DrawerDialogProps {

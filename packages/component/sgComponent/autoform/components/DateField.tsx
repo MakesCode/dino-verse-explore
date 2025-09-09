@@ -1,4 +1,4 @@
-import { Input } from '@sg/ui';
+import { Input } from '@/components/ui/input';
 import { AutoFormFieldProps } from '../react/types';
 import React from 'react';
 

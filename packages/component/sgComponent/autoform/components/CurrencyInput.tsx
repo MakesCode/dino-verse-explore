@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AutoFormFieldProps } from '../react/types';
-import { Input } from '@sg/ui';
+import { Input } from '@/components/ui/input';
 
 export const CurrencyInput: React.FC<AutoFormFieldProps> = (props) => {
   const valueNumericProp = props?.value as number | undefined;

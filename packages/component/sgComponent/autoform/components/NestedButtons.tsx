@@ -1,8 +1,11 @@
-import { Button, cn, Label, TooltipProvider } from '@sg/ui';
 import React, { JSX, useState } from 'react';
 import { AutoFormFieldProps } from '../react';
 import clsx from 'clsx';
 import { LucideProps } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn } from 'packages/hooks/utils';
+import { Label } from '@/components/ui/label';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 interface Data {
   name: string;

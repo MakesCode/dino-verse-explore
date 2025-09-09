@@ -5,11 +5,9 @@ import {
   getRentalApprovalsRequest,
   getSubscriptionRentalApprovalsRequest,
   postArchiveProjectRequest,
-  postInitRequest,
 } from './model/request';
 
 export interface RentalApprovalsGateway {
-  postInit({ params, data }: postInitRequest): Promise<SmartGarantResponse<RentalApproval>>;
   getRentalApprovals({ params, data }: getRentalApprovalsRequest): Promise<SmartGarantResponse<SmartGarantGrid<RentalApproval>>>;
   postArchiveProject({ params, data }: postArchiveProjectRequest): Promise<SmartGarantResponse<any>>;
     getSubscriptionRentalApprovals({ params, data }: getSubscriptionRentalApprovalsRequest): Promise<SmartGarantResponse<RentalApproval>>;
@@ -18,9 +16,7 @@ export interface RentalApprovalsGateway {
 export class ApiRentalApprovalsGateway implements RentalApprovalsGateway {
   constructor(private apiService: ApiService) {}
 
-  async postInit({ params, data }: postInitRequest): Promise<SmartGarantResponse<RentalApproval>> {
-    return this.apiService.post(`/v1/gli/subscriptions/${params.subscriptionId}/rental-approvals/init`, data);
-  }
+ 
   async getRentalApprovals({ params }: getRentalApprovalsRequest): Promise<SmartGarantResponse<SmartGarantGrid<RentalApproval>>> {
     const { subscriptionId, search, pageIndex, limite, status, groupe } = params;
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Switch as SwitchShadcn } from '@sg/ui';
+import { Switch as SwitchShadcn } from '@/components/ui/switch';
 import { AutoFormFieldProps } from '../react/types';
 
 export const Switch: React.FC<AutoFormFieldProps> = (props) => {

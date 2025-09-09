@@ -8,7 +8,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { ChevronsUpDown, Handshake, Lightbulb, LogOut, User, X, Check } from 'lucide-react';
-import { useI18n, flags } from '../../../../pro/app/lib/i18n/i18nContext';
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
@@ -22,8 +22,6 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
-  const { locale, setLocale } = useI18n();
-  const currentFlag = flags.find((f) => f.code === locale);
 
   return (
     <SidebarMenu>
@@ -74,28 +72,6 @@ export function NavUser({
                 <Handshake />
                 Devenir Partenaire
               </DropdownMenuItem>
-              <DropdownMenuSub>
-                <DropdownMenuSubTrigger className="space-x-2">
-                  {currentFlag ? <img src={currentFlag.source} alt={currentFlag.name} className="h-4 w-4 rounded-sm" /> : null}
-                  <span>Langue</span>
-                </DropdownMenuSubTrigger>
-                <DropdownMenuSubContent>
-                  {flags.map((f) => (
-                    <DropdownMenuItem
-                      key={f.code}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setLocale(f.code);
-                      }}
-                    >
-                      <img src={f.source} alt={f.name} className="h-4 w-6 rounded-sm" />
-                      <span className="flex-1">{f.name}</span>
-                      {f.code === locale ? <Check className="size-4 text-primary" /> : null}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuSubContent>
-              </DropdownMenuSub>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>

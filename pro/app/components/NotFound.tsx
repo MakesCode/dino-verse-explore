@@ -1,13 +1,13 @@
 import { Button } from '../../../packages/component/ui/button';
 import { Link, useNavigate } from '@tanstack/react-router';
-import logo from '@sg/assets/img/logo-white-full.png';
+// import logo from '@sg/assets/img/logo-white-full.png';
 
 export function NotFound({ children }: { children?: any }) {
   const navigate = useNavigate();
   return (
     <main className="grid min-h-full p-5">
       <div className="w-[40svh] mx-auto">
-        <img src={logo} width={'100%'} height={'100%'} alt="SmartGarant Logo" />
+        <img src={""} width={'100%'} height={'100%'} alt="SmartGarant Logo" />
       </div>
       <div className="text-center place-items-center  ">
         <h1 className="mt-4 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">Page non trouvée</h1>

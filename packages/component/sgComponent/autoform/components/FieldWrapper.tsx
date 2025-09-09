@@ -1,7 +1,7 @@
 import React from 'react';
 import { FieldWrapperProps } from '../react/types';
-import { Label } from '@sg/ui';
 import { Renderable } from '../core/types';
+import { Label } from '@/components/ui/label';
 
 const DISABLED_LABELS = ['boolean', 'object', 'array'];
 

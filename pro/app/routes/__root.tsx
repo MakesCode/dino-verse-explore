@@ -5,8 +5,9 @@ import themecss from '../lib/style/mila-theme.css?url';
 import type { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
-import logo from '@sg/assets/img/favicon.ico?url';
+// import logo from '@sg/assets/img/favicon.ico?url';
 import { Provider } from 'react-redux';
+import { Provider as DIPresenterProvider } from '../lib/depencyInversion/Provider';
 import { DefaultCatchBoundary } from '../components/DefaultCatchBoundary';
 import { NotFound } from '../components/NotFound';
 import { createStoreWithDependencies, Dependencies } from '../lib/redux/dependencies';
@@ -52,7 +53,7 @@ export const Route = createRootRouteWithContext<{
         rel: 'stylesheet',
         href: themecss,
       },
-      { rel: 'icon', type: 'image/x-icon', href: logo },
+      { rel: 'icon', type: 'image/x-icon', href: "" },
     ],
   }),
 
@@ -71,7 +72,7 @@ export const Route = createRootRouteWithContext<{
 });
 
 function RootComponent() {
-  const { store, locale,  } = Route.useRouteContext();
+  const { store } = Route.useRouteContext();
 
   return (
     <RootDocument>
@@ -84,8 +85,10 @@ function RootComponent() {
         }
       >
           <Provider store={store}>
-            <Outlet />
-            <NotificationProvider />
+            <DIPresenterProvider>
+              <Outlet />
+              <NotificationProvider />
+            </DIPresenterProvider>
           </Provider>
       </SidebarProvider>
     </RootDocument>

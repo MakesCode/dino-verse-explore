@@ -1,7 +1,7 @@
 import React from 'react';
 import { PlusIcon } from 'lucide-react';
 import { ArrayWrapperProps } from '../react/types';
-import { Button } from '@sg/ui';
+import { Button } from '@/components/ui/button';
 
 export const ArrayWrapper: React.FC<ArrayWrapperProps> = ({ label, children, onAddItem }) => {
   return (

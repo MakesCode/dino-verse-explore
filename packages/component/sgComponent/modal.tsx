@@ -1,5 +1,4 @@
 import {
-  cn,
   Dialog,
   DialogContent,
   DialogDescription,
@@ -7,15 +6,18 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  Drawer,
+} from '../ui/dialog';
+import {
+    Drawer,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@sg/ui';
-import { useMediaQuery } from '@sg/hooks';
+} from '../ui/drawer';
+import { cn } from '../../hooks/utils';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 

@@ -33,3 +33,41 @@
 .discover-animation {
   animation: discover 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+/* Pro theme utilities */
+.scrollbar-visible {
+  overflow-y: auto;
+  scrollbar-width: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollbar-visible::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+.animate-marquee {
+  animation: marquee var(--duration, 10s) linear infinite;
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 10s) linear infinite;
+}

@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { FieldValues, UseFormReturn } from 'react-hook-form';
 import { SchemaProvider } from '../core/schema-provider';
 import { ParsedField, ParsedSchema, Renderable, FieldConfig as BaseFieldConfig } from '../core/types';
-import { Button } from '@sg/ui';
+import { Button } from '@/components/ui/button';
 
 export interface AutoFormProps<T extends FieldValues> {
   schema: SchemaProvider<T>;

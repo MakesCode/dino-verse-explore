@@ -1,16 +1,10 @@
 import {  SidebarTrigger } from '@/components/ui/sidebar';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-import logo from '@sg/assets/img/logoMobile-pro.png';
-import { useRouter } from '@tanstack/react-router';
+// import logo from '@sg/assets/img/logoMobile-pro.png';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
 export function SiteHeader() {
-  const router = useRouter();
-  const canGoBack = router.history.canGoBack();
-  const historyLength = router.history.length;
-  const currentIndex = router.latestLocation.state?.__TSR_index || 0;
-  const canGoForward = currentIndex < historyLength - 1;
 
   return (
     <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
@@ -22,20 +16,14 @@ export function SiteHeader() {
           <Button
             variant={'ghost'}
             size={'icon'}
-            disabled={!canGoBack}
-            onClick={() => {
-              router.history.back();
-            }}
+        
           >
             <CircleArrowLeft />
           </Button>
           <Button
             variant={'ghost'}
             size={'icon'}
-            disabled={!canGoForward}
-            onClick={() => {
-              router.history.forward();
-            }}
+       
           >
             <CircleArrowRight />
           </Button>
@@ -43,7 +31,7 @@ export function SiteHeader() {
         </div>
 
         <div className="flex-1 flex justify-center">
-          <img src={logo} alt="Logo" className="h-8" />
+          <img src={""} alt="Logo" className="h-8" />
         </div>
 
         <div className="flex items-center gap-2">

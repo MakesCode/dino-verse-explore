@@ -1,10 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { Users, CheckCircle, Home, AlertTriangle, Euro } from 'lucide-react';
 import { RentalGuaranteeManagement } from './-components/RentalGuaranteeManagement';
-import { useDispatch } from 'react-redux';
-import { useQuery } from '@tanstack/react-query';
-import { retrieveSubscriptionQueryOption } from '../../../features/gli/Subscriptions/retrieveSubscription/retrieveSubscriptionQueryOption';
-import { retrieveKpiQueryOption } from '../../../features/gli/Subscriptions/retrieveKpi/retrieveKpiQueryOption';
+import { useSubscriptionPresenter } from '../../../features/gli/Subscriptions/presenter/useSubscriptionPresenter';
+import { useKpiPresenter } from '../../../features/gli/Subscriptions/presenter/useKpiPresenter';
 import { Sidebar } from '../../../../../packages/component/sgComponent/sidebar/Sidebar';
 import { SiteHeader } from '../../../../../packages/component/sgComponent/sidebar/SiteHeader';
 
@@ -14,19 +12,8 @@ export const Route = createFileRoute('/(gli)/(home)/')({
 });
 
 function RouteComponent() {
-  const dispatch = useDispatch();
-  const optionSubscribe = retrieveSubscriptionQueryOption({ data: {}, params: {} }, dispatch);
-  const { data } = useQuery(optionSubscribe);
-  const optionKpi = retrieveKpiQueryOption(
-    {
-      data: {},
-      params: {
-        subscriptionId: data?.id ?? '',
-      },
-    },
-    dispatch,
-  );
-  const { data: kpi } = useQuery(optionKpi);
+  const { subscription: data } = useSubscriptionPresenter();
+  const { kpi } = useKpiPresenter(data?.id);
 
   return (
     <Sidebar>
@@ -45,7 +32,7 @@ function RouteComponent() {
             />
           </div>
           <div className="w-full">
-            <RentalGuaranteeManagement />
+            <RentalGuaranteeManagement subscriptionId={data?.id} />
           </div>
         </div>
       </div>

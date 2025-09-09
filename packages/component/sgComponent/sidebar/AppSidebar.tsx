@@ -7,11 +7,9 @@ import { NavUser } from './NavUser';
 import { NavMain } from './NavMain';
 import { NavDocuments } from './NavDocument';
 import { NavSecondary } from './NavSecondary';
-import logo from '@sg/assets/img/logoMobile.png';
-import { useNavigate } from '@tanstack/react-router';
+// import logo from '@sg/assets/img/logoMobile.png';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const navigate = useNavigate();
   const data = {
     user: {
       name: 'shadcn',
@@ -31,10 +29,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       },
       {
         title: 'Mes GLI',
-        url: () =>
-          navigate({
-            from: '/',
-          }),
+        url: '#',
         icon: () => <HeartHandshake className="text-green-500" />,
       },
       {
@@ -69,7 +64,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-2 ">
-              <img src={logo} alt="SmartGarant Logo" className="h-10 w-auto max-w-full object-contain" />
+              <img src={""} alt="SmartGarant Logo" className="h-10 w-auto max-w-full object-contain" />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

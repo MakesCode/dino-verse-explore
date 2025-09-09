@@ -48,6 +48,20 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
 
+  /* Additional brand colors used by Badge variants (from pro app) */
+  --color-pale-red: #ffddde;
+  --color-soft-yellow: #fcf2d7;
+  --color-warm-peach: #fbe9d5;
+  --color-lime-green: #396c3e;
+  --color-navy-blue: #d9f1ff;
+  --color-ocean-blue: #e4ecfb;
+  --color-soft-pink: #e4e4ff;
+  --color-forest-green: #e1fbed;
+  --color-neutral-gray: #d5d7db;
+  --color-faint-red: #fceced;
+  --color-strong-red: #fcf0eb;
+  --color-indigo-custom: #e1e1fc;
+
   @keyframes accordion-down {
     from {
       height: 0;
@@ -95,111 +109,80 @@
   }
 }
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Theme variables aligned with pro app (mila-theme) */
 @layer base {
   :root {
-    /* Paléontologie color palette */
-    --background: 45 15% 97%;
-    --foreground: 30 25% 15%;
-
-    --card: 42 20% 95%;
-    --card-foreground: 30 25% 15%;
-
-    --popover: 42 20% 95%;
-    --popover-foreground: 30 25% 15%;
-
-    /* Terre et fossile - brown dominant */
-    --primary: 25 45% 25%;
-    --primary-foreground: 45 15% 97%;
-
-    /* Forêt préhistorique - green */
-    --secondary: 95 35% 35%;
-    --secondary-foreground: 45 15% 97%;
-
-    --muted: 40 12% 88%;
-    --muted-foreground: 30 15% 45%;
-
-    /* Accent doré fossile */
-    --accent: 45 85% 65%;
-    --accent-foreground: 30 25% 15%;
-
+    --background: 0 0% 100%;
+    --foreground: 240 27.5862% 22.7451%;
+    --card: 0 0% 100%;
+    --card-foreground: 214.8387 23.3083% 26.0784%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214.8387 23.3083% 26.0784%;
+    --primary: 162.2449 47.5728% 59.6078%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214.8387 23.3083% 26.0784%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 162.5 60% 92.1569%;
+    --muted-foreground: 214.8387 23.3083% 26.0784%;
+    --accent: 162.5 60% 92.1569%;
+    --accent-foreground: 214.8387 23.3083% 26.0784%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 45 15% 97%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 96.8627%;
+    --input: 0 0% 96.8627%;
+    --ring: 0 0% 96.8627%;
+    --chart-1: 251.9008 55.7604% 57.451%;
+    --chart-2: 249.6429 94.9153% 76.8627%;
+    --chart-3: 239.1781 82.0225% 65.098%;
+    --chart-4: 243.1579 93.007% 71.9608%;
+    --chart-5: 243.6522 47.3251% 47.6471%;
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 214.8387 23.3083% 26.0784%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 214.8387 23.3083% 26.0784%;
+    --sidebar-accent: 0 0% 92.9412%;
+    --sidebar-accent-foreground: 214.8387 23.3083% 26.0784%;
+    --sidebar-border: 0 0% 96.8627%;
+    --sidebar-ring: 0 0% 96.8627%;
+    --radius: 1.025rem;
+    --spacing: 0.25rem;
 
-    --border: 40 15% 85%;
-    --input: 40 15% 90%;
-    --ring: 25 45% 25%;
-
-    /* Gradients préhistoriques */
-    --gradient-hero: linear-gradient(135deg, hsl(25 45% 25%), hsl(35 55% 35%));
-    --gradient-fossil: linear-gradient(180deg, hsl(45 85% 65%), hsl(40 75% 55%));
-    --gradient-earth: linear-gradient(90deg, hsl(25 35% 45%), hsl(95 35% 35%));
     
-    /* Shadows */
-    --shadow-fossil: 0 10px 30px -10px hsl(45 85% 65% / 0.3);
-    --shadow-deep: 0 20px 50px -15px hsl(25 45% 25% / 0.4);
-    
-    /* Animations */
-    --transition-discover: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-    --radius: 0.75rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --background: 240 26.8293% 8.0392%;
+    --foreground: 240 48.7179% 92.3529%;
+    --card: 240 27.7778% 14.1176%;
+    --card-foreground: 240 48.7179% 92.3529%;
+    --popover: 240 27.7778% 14.1176%;
+    --popover-foreground: 240 48.7179% 92.3529%;
+    --primary: 251.25 100% 78.0392%;
+    --primary-foreground: 240 26.8293% 8.0392%;
+    --secondary: 242.8571 32.8125% 25.098%;
+    --secondary-foreground: 241.9672 100% 88.0392%;
+    --muted: 240 33.3333% 20%;
+    --muted-foreground: 240 20.2532% 69.0196%;
+    --accent: 240 33.3333% 28.2353%;
+    --accent-foreground: 240 48.7179% 92.3529%;
+    --destructive: 350.1754 100% 66.4706%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 26.1538% 25.4902%;
+    --input: 240 26.1538% 25.4902%;
+    --ring: 251.25 100% 78.0392%;
+    --chart-1: 251.25 100% 78.0392%;
+    --chart-2: 230.4878 44.086% 63.5294%;
+    --chart-3: 206.7123 89.0244% 67.8431%;
+    --chart-4: 174.2857 41.8327% 50.7843%;
+    --chart-5: 325.5224 100% 73.7255%;
+    --sidebar: 240 27.7778% 14.1176%;
+    --sidebar-foreground: 240 48.7179% 92.3529%;
+    --sidebar-primary: 251.25 100% 78.0392%;
+    --sidebar-primary-foreground: 240 26.8293% 8.0392%;
+    --sidebar-accent: 240 33.3333% 28.2353%;
+    --sidebar-accent-foreground: 240 48.7179% 92.3529%;
+    --sidebar-border: 240 26.1538% 25.4902%;
+    --sidebar-ring: 251.25 100% 78.0392%;
   }
 }
 

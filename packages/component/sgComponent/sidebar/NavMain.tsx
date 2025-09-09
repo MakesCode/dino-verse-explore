@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@sg/ui';
+import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { IconNode, LucideIcon, X } from 'lucide-react';
 
 export function NavMain({

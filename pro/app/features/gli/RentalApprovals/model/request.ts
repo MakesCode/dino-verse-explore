@@ -2,12 +2,7 @@ import { ApiRequest } from '../../../../lib/type/type';
 import { ApiParams } from '../../../../routes/(gli)/(home)/-components/useFiltres';
 import { LegalEntity, NaturalEntity } from './RentalApproval';
 
-export type postInitRequest = ApiRequest<
-  {
-    subscriptionId: string;
-  },
-  {}
->;
+
 export type postCreateApprovalRequest = ApiRequest<
   {
     subscriptionId: string;

@@ -1,4 +1,4 @@
-import { Button } from '@sg/ui';
+import { Button } from '@/components/ui/button';
 import React from 'react';
 
 export const SubmitButton: React.FC<{ children: React.ReactNode } & React.ComponentProps<typeof Button>> = ({ children, ...props }) => (

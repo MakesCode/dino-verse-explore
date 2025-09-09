@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Loader2 } from 'lucide-react';
-import { Button, cn, Input } from '@sg/ui';
-
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { cn } from '../../hooks/utils';
 function useDebounce<T>(value: T, delay: number): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 

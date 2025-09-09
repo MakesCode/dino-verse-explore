@@ -1,7 +1,7 @@
 import React from 'react';
 import { TrashIcon } from 'lucide-react';
 import { ArrayElementWrapperProps } from '../react/types';
-import { Button } from '@sg/ui';
+import { Button } from '@/components/ui/button';
 
 export const ArrayElementWrapper: React.FC<ArrayElementWrapperProps> = ({ children, onRemove }) => {
   return (
