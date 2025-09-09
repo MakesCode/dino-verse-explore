@@ -1,6 +1,6 @@
 import {  SidebarTrigger } from '@/components/ui/sidebar';
 import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-// import logo from '@sg/assets/img/logoMobile-pro.png';
+import logo from '../../../asset/img/logoMobile.png';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 
@@ -31,7 +31,7 @@ export function SiteHeader() {
         </div>
 
         <div className="flex-1 flex justify-center">
-          <img src={""} alt="Logo" className="h-8" />
+          <img src={logo} alt="Logo" className="h-8" />
         </div>
 
         <div className="flex items-center gap-2">

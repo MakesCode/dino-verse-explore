@@ -99,6 +99,14 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
+@font-face {
+  font-family: 'AvenirNext';
+  src: url('../fonts/AvenirNextLTPro-Regular.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway.ttf') format('opentype');
+}
 @layer base {
   *,
   ::after,
@@ -106,6 +114,27 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
+  }
+   * {
+    @apply border-border outline-ring/50;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 strong {
+    font-family: 'Raleway', sans-serif;
+  }
+  span,
+  p,
+  a,
+  li,
+  button {
+    font-family: 'AvenirNext', sans-serif;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 

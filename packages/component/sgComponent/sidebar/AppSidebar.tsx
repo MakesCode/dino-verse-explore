@@ -7,7 +7,7 @@ import { NavUser } from './NavUser';
 import { NavMain } from './NavMain';
 import { NavDocuments } from './NavDocument';
 import { NavSecondary } from './NavSecondary';
-// import logo from '@sg/assets/img/logoMobile.png';
+import logo from '../../../asset/img/logoMobile.png';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const data = {
@@ -64,7 +64,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-2 ">
-              <img src={""} alt="SmartGarant Logo" className="h-10 w-auto max-w-full object-contain" />
+              <img src={logo} alt="SmartGarant Logo" className="h-10 w-auto max-w-full object-contain" />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
